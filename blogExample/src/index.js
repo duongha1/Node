@@ -6,12 +6,12 @@ const morgan = require("morgan");
 const port = 3000;
 
 const route = require("./routes");
-const db = require("./config/db");
+const db = require("./config/db"); //connect to db
 
 //connect to database
 db.connect();
 
-//use static file
+//use static file ->public/img
 app.use(express.static(path.join(__dirname, "public")));
 
 //middleware
@@ -33,7 +33,7 @@ app.engine(
   })
 );
 app.set("view engine", "hbs"); //default
-app.set("views", path.join(__dirname, "resources/views"));
+app.set("views", path.join(__dirname, "resources", "views"));
 
 //Action ----> Dispatcher ---->Function Handler
 
@@ -41,5 +41,5 @@ app.set("views", path.join(__dirname, "resources/views"));
 route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
